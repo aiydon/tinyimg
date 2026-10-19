@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 from PIL import Image, ImageDraw
 
-from imagepress import (
+from tinyimg import (
     CompressionError,
     EncodeError,
     OptionError,
@@ -15,7 +15,7 @@ from imagepress import (
     get_encoder,
     register_encoder,
 )
-from imagepress.metrics import compare
+from tinyimg.metrics import compare
 
 
 def _gradient(

@@ -1,4 +1,4 @@
-"""Click command line interface for imagepress."""
+"""Click command line interface for tinyimg."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ import click
 
 from . import __version__
 from .engines import available_formats
-from .errors import ImagePressError
+from .errors import TinyImgError
 from .formats import FORMATS, output_formats
 from .options import Budget, CompressionOptions
 from .pipeline import compress_many
@@ -135,7 +135,7 @@ def _print_report(report: BatchReport) -> None:
         "show_default": True,
     }
 )
-@click.version_option(__version__, prog_name="imagepress")
+@click.version_option(__version__, prog_name="tinyimg")
 @click.argument(
     "inputs",
     nargs=-1,
@@ -276,8 +276,8 @@ def main(
             recursive=recursive,
             workers=workers,
         )
-    except (ImagePressError, OSError) as exc:
-        click.echo(f"imagepress: {exc}", err=True)
+    except (TinyImgError, OSError) as exc:
+        click.echo(f"tinyimg: {exc}", err=True)
         raise click.exceptions.Exit(2) from exc
 
     if json_output:

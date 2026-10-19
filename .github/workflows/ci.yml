@@ -19,6 +19,6 @@ jobs:
       - name: Format
         run: uv format --check
       - name: Type
-        run: uv tool run ty check src/imagepress
+        run: uv tool run ty check src/tinyimg
       - name: Test
         run: uv run pytest -q

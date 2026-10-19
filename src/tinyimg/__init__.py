@@ -1,4 +1,4 @@
-"""imagepress - adaptive, visually lossless image compression.
+"""tinyimg - adaptive, visually lossless image compression.
 
 Public surface:
 
@@ -25,9 +25,9 @@ from .errors import (
     CompressionError,
     DecodeError,
     EncodeError,
-    ImagePressError,
     OptionError,
     OutputExistsError,
+    TinyImgError,
     UnsupportedFormatError,
 )
 from .formats import (
@@ -43,7 +43,7 @@ from .pipeline import compress_directory, compress_image, compress_many
 from .result import BatchFailure, BatchReport, CompressionResult, EncodeAttempt
 
 try:
-    __version__ = version("imagepress")
+    __version__ = version("tinyimg")
 except PackageNotFoundError:  # pragma: no cover - editable/source tree
     __version__ = "0.0.0"
 
@@ -62,7 +62,7 @@ __all__ = [
     "EncodeError",
     "Encoder",
     "FormatSpec",
-    "ImagePressError",
+    "TinyImgError",
     "Metrics",
     "OptionError",
     "OptionsLike",

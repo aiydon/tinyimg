@@ -7,7 +7,7 @@ import numpy as np
 from click.testing import CliRunner
 from PIL import Image
 
-from imagepress.cli import main
+from tinyimg.cli import main
 
 
 def _png(path: p.Path) -> p.Path:
@@ -27,7 +27,7 @@ def test_list_formats() -> None:
 def test_version() -> None:
     result = CliRunner().invoke(main, ["--version"])
     assert result.exit_code == 0
-    assert "imagepress" in result.output
+    assert "tinyimg" in result.output
 
 
 def test_json_batch_success(tmp_path: p.Path) -> None:

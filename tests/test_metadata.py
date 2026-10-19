@@ -4,7 +4,7 @@ from pathlib import Path
 
 from PIL import Image, ImageCms
 
-from imagepress import compress_image
+from tinyimg import compress_image
 
 
 def test_exif_orientation_is_applied_and_reset(tmp_path: Path) -> None:
@@ -47,8 +47,8 @@ def test_icc_profile_is_preserved_by_default(tmp_path: Path) -> None:
 
 
 def test_measure_applies_exif_orientation(tmp_path: Path) -> None:
-    from imagepress import CompressionOptions
-    from imagepress.engines.base import EncodeContext
+    from tinyimg import CompressionOptions
+    from tinyimg.engines.base import EncodeContext
 
     source = tmp_path / "rotated.png"
     exif = Image.Exif()

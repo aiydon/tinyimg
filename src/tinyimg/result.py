@@ -34,7 +34,7 @@ class EncodeAttempt(BaseModel):
 
 
 class CompressionResult(BaseModel):
-    """Outcome of a single :func:`imagepress.compress_image` call."""
+    """Outcome of a single :func:`tinyimg.compress_image` call."""
 
     model_config = ConfigDict(frozen=True, extra="forbid")
 
@@ -86,7 +86,7 @@ class BatchFailure(BaseModel):
 
 
 class BatchReport(BaseModel):
-    """Aggregate outcome of :func:`imagepress.compress_many`.
+    """Aggregate outcome of :func:`tinyimg.compress_many`.
 
     ``results`` and ``failures`` preserve input order.  ``scanned`` counts
     files discovered after directory expansion and de-duplication.

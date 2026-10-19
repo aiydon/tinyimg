@@ -21,7 +21,7 @@ from PIL import Image, ImageChops, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
 
-from imagepress import (  # noqa: E402
+from tinyimg import (  # noqa: E402
     CompressionOptions,
     available_formats,
     compress_image,
@@ -52,17 +52,23 @@ def _human(size: int) -> str:
 
 
 def _versions() -> str:
-    packages = ["pillow", "numpy", "imagequant", "pyoxipng", "pillow-avif-plugin"]
+    packages = [
+        ("pillow", "Pillow"),
+        ("numpy", "NumPy"),
+        ("imagequant", "imagequant"),
+        ("pyoxipng", "pyoxipng"),
+        ("pillow-avif-plugin", "AVIF plugin"),
+    ]
     versions = []
-    for package in packages:
+    for package, label in packages:
         try:
-            versions.append(f"{package} {importlib.metadata.version(package)}")
+            versions.append(f"{label} {importlib.metadata.version(package)}")
         except importlib.metadata.PackageNotFoundError:
-            versions.append(f"{package} not installed")
+            versions.append(f"{label} not installed")
     return (
-        f"Python {platform.python_version()} · "
-        + " · ".join(versions)
-        + " · effort=balanced"
+        f"Python {platform.python_version()}, "
+        + ", ".join(versions)
+        + ", effort=balanced"
     )
 
 
@@ -95,8 +101,8 @@ def _preview(name: str, result) -> Path:
         font = ImageFont.load_default()
     quality_label = _quality_label_from_item(result.as_dict())
     labels = [
-        "original · 100% crop",
-        f"compressed (-{result.savings * 100:.0f}%) · {quality_label}",
+        "original, 100% crop",
+        f"compressed, {result.savings * 100:.0f}% smaller, {quality_label}",
         f"difference x{gain}",
     ]
     for index, label in enumerate(labels):
@@ -113,7 +119,7 @@ def _markdown(results: list[dict[str, Any]], *, preview_prefix: str) -> str:
     lines.append(f"环境：{_versions()}")
     lines.append("")
     lines.append(
-        "| 样本 | 格式 | 原始 | 压缩后 | 节省 | SSIM | SSIM (2×) | PSNR | "
+        "| 样本 | 格式 | 原始 | 压缩后 | 节省 | SSIM | SSIM 2x | PSNR | "
         "ΔE00 均值 | ΔE00 p95 | 编码 | 耗时 | 目标 |"
     )
     lines.append("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---:|---|")
@@ -155,9 +161,9 @@ def _markdown(results: list[dict[str, Any]], *, preview_prefix: str) -> str:
     )
     lines.append("")
     lines.append(
-        "> SSIM 为全分辨率值（含抖动噪声），SSIM (2×) 为 2×2 盒式下采样后的值，"
-        "PNG 调色板路径的验收使用的是后者。ΔE00 为 CIEDE2000，越小越好；"
-        "p95 ≤ 6、均值 ≤ 2.5、SSIM (2×) ≥ 0.99、alpha PSNR ≥ 40 dB 为默认预算。"
+        "> SSIM 为全分辨率值，包含抖动噪声。SSIM 2x 为 2x2 盒式下采样后的值，"
+        "PNG 调色板路径使用它验收。ΔE00 为 CIEDE2000，越小越好。"
+        "p95 ≤ 6，均值 ≤ 2.5，SSIM 2x ≥ 0.99，alpha PSNR ≥ 40 dB 为默认预算。"
     )
     lines.append("")
     lines.append("### 100% 局部对比")
@@ -170,7 +176,7 @@ def _markdown(results: list[dict[str, Any]], *, preview_prefix: str) -> str:
         slug = f"{Path(name).stem}-{Path(name).suffix.lstrip('.')}"
         preview = f"{preview_prefix}/{slug}.png"
         lines.append(
-            f"**{name}** — 左：原图；中：压缩后；右：差异 ×{PREVIEW_SPECS[name][1]}。"
+            f"**{name}**。左：原图；中：压缩后；右：差异 ×{PREVIEW_SPECS[name][1]}。"
         )
         lines.append("")
         lines.append(f"![{name} comparison]({preview})")
@@ -241,7 +247,7 @@ def main(no_readme: bool) -> None:
             else "metrics n/a"
         )
         print(
-            f"{source.name:16} {_human(result.source_bytes):>10} -> "
+            f"{source.name:16} {_human(result.source_bytes):>10} to "
             f"{_human(result.output_bytes):>10}  {result.savings * 100:6.1f}%  "
             f"{quality}  {result.elapsed_s:.2f}s"
         )
@@ -271,7 +277,7 @@ def main(no_readme: bool) -> None:
     total_source = sum(int(item["source_bytes"]) for item in results)
     total_output = sum(int(item["output_bytes"]) for item in results)
     print(
-        f"\ntotal: {_human(total_source)} -> {_human(total_output)} "
+        f"\ntotal: {_human(total_source)} to {_human(total_output)} "
         f"({100 * (1 - total_output / total_source):.1f}% smaller)"
     )
     print(f"wrote {RESULTS_JSON} and {RESULTS_MD}")

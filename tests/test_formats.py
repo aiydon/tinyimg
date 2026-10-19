@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from imagepress import (
+from tinyimg import (
     FORMATS,
     UnsupportedFormatError,
     available_formats,

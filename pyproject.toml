@@ -1,7 +1,7 @@
 [project]
-name = "imagepress"
-version = "0.2.0"
-description = "Adaptive, visually lossless image compression (TinyPNG-style)"
+name = "tinyimg"
+version = "0.3.0"
+description = "Perceptual image compression with Pydantic and Click"
 readme = "README.md"
 authors = [
     { name = "iydon", email = "liangiydon@gmail.com" }
@@ -41,7 +41,7 @@ avif = ["pillow-avif-plugin>=1.6.0"]
 full = ["pillow-avif-plugin>=1.6.0"]
 
 [project.scripts]
-imagepress = "imagepress.cli:main"
+tinyimg = "tinyimg.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.13.0,<0.14.0"]

@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 from PIL import Image
 
-from imagepress import (
+from tinyimg import (
     CompressionError,
     CompressionOptions,
     OptionError,

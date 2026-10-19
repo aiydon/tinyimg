@@ -15,7 +15,7 @@ from .registry import (
 )
 from .webp import WebpEncoder
 
-# Import-time registration is intentional: importing imagepress gives a
+# Import-time registration is intentional: importing tinyimg gives a
 # complete, ready-to-use set of engines.  ``replace=True`` keeps reloads safe.
 for _engine in (
     PngEncoder(),

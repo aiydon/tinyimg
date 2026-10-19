@@ -115,54 +115,6 @@ wheels = [
 ]
 
 [[package]]
-name = "imagepress"
-version = "0.2.0"
-source = { editable = "." }
-dependencies = [
-    { name = "click" },
-    { name = "imagequant" },
-    { name = "numpy" },
-    { name = "pillow" },
-    { name = "pydantic" },
-    { name = "pyoxipng" },
-]
-
-[package.optional-dependencies]
-avif = [
-    { name = "pillow-avif-plugin" },
-]
-full = [
-    { name = "pillow-avif-plugin" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pillow-avif-plugin" },
-    { name = "pytest" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "click", specifier = ">=8.1" },
-    { name = "imagequant", specifier = ">=1.1" },
-    { name = "numpy", specifier = ">=1.26" },
-    { name = "pillow", specifier = ">=10.0" },
-    { name = "pillow-avif-plugin", marker = "extra == 'avif'", specifier = ">=1.6.0" },
-    { name = "pillow-avif-plugin", marker = "extra == 'full'", specifier = ">=1.6.0" },
-    { name = "pydantic", specifier = ">=2.10" },
-    { name = "pyoxipng", specifier = ">=9.1" },
-]
-provides-extras = ["avif", "full"]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "pillow-avif-plugin", specifier = ">=1.6.0" },
-    { name = "pytest", specifier = ">=8.0" },
-    { name = "ruff", specifier = ">=0.9" },
-]
-
-[[package]]
 name = "imagequant"
 version = "1.1.5"
 source = { registry = "https://mirrors.aliyun.com/pypi/simple" }
@@ -652,6 +604,54 @@ wheels = [
     { url = "https://mirrors.aliyun.com/pypi/packages/0a/e8/1e186578076aff7a80735f625005fde678412ab609cd323ed182eb7d6b87/ruff-0.17.1-py3-none-win32.whl", hash = "sha256:1de0030a8aa78c65c5fecb84b2e5c390ac684c0452875a02afc7c083d49a496a" },
     { url = "https://mirrors.aliyun.com/pypi/packages/6a/2e/da3d9589bae8e8b58f3a48bd5bc0b980232fb14a83bf02c3be7660f87c1b/ruff-0.17.1-py3-none-win_amd64.whl", hash = "sha256:5df76f16580fab58d0f6c98a3ac254a4abceb7b2489b8b678335869cff77b3d7" },
     { url = "https://mirrors.aliyun.com/pypi/packages/df/c9/0f2a4dea06a5e12c1191ee3d96b1e1233797d0d5e18f97a2b909a95a9836/ruff-0.17.1-py3-none-win_arm64.whl", hash = "sha256:42400b9a6ff8515ff27796f07f92e0195be011c86e81e381606f58ea5502fef4" },
+]
+
+[[package]]
+name = "tinyimg"
+version = "0.3.0"
+source = { editable = "." }
+dependencies = [
+    { name = "click" },
+    { name = "imagequant" },
+    { name = "numpy" },
+    { name = "pillow" },
+    { name = "pydantic" },
+    { name = "pyoxipng" },
+]
+
+[package.optional-dependencies]
+avif = [
+    { name = "pillow-avif-plugin" },
+]
+full = [
+    { name = "pillow-avif-plugin" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pillow-avif-plugin" },
+    { name = "pytest" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "click", specifier = ">=8.1" },
+    { name = "imagequant", specifier = ">=1.1" },
+    { name = "numpy", specifier = ">=1.26" },
+    { name = "pillow", specifier = ">=10.0" },
+    { name = "pillow-avif-plugin", marker = "extra == 'avif'", specifier = ">=1.6.0" },
+    { name = "pillow-avif-plugin", marker = "extra == 'full'", specifier = ">=1.6.0" },
+    { name = "pydantic", specifier = ">=2.10" },
+    { name = "pyoxipng", specifier = ">=9.1" },
+]
+provides-extras = ["avif", "full"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pillow-avif-plugin", specifier = ">=1.6.0" },
+    { name = "pytest", specifier = ">=8.0" },
+    { name = "ruff", specifier = ">=0.9" },
 ]
 
 [[package]]

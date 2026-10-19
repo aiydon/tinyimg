@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import pytest
 
-from imagepress import Budget, CompressionOptions, OptionError
-from imagepress.metrics import Metrics
-from imagepress.options import resolve_options
+from tinyimg import Budget, CompressionOptions, OptionError
+from tinyimg.metrics import Metrics
+from tinyimg.options import resolve_options
 
 
 def _metrics(**overrides: float) -> Metrics:

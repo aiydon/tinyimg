@@ -1,4 +1,4 @@
-"""AVIF engine, enabled by installing ``imagepress[avif]``."""
+"""AVIF engine, enabled by installing ``tinyimg[avif]``."""
 
 from __future__ import annotations
 
@@ -63,7 +63,7 @@ class AvifEncoder:
 
     name = "AVIF"
     supports_lossless = False
-    install_hint = "install imagepress[avif] (pillow-avif-plugin)"
+    install_hint = "install tinyimg[avif] (pillow-avif-plugin)"
 
     def available(self) -> bool:
         return _PILLOW_AVIF_AVAILABLE

@@ -11,7 +11,7 @@ lint:
 	$(UV) run ruff check src tests scripts
 
 type:
-	$(UV) tool run ty check src/imagepress
+	$(UV) tool run ty check src/tinyimg
 
 test:
 	$(UV) run pytest -q

@@ -1,7 +1,7 @@
 """Decode -> choose engine -> encode -> verify -> write.
 
 The pipeline owns filesystem policy (naming, overwrite, metadata) and knows
-nothing about codec internals.  Codecs implement :class:`imagepress.Encoder`.
+nothing about codec internals.  Codecs implement :class:`tinyimg.Encoder`.
 """
 
 from __future__ import annotations
@@ -20,9 +20,9 @@ from .engines import EncodeContext, get_encoder
 from .errors import (
     DecodeError,
     EncodeError,
-    ImagePressError,
     OptionError,
     OutputExistsError,
+    TinyImgError,
     UnsupportedFormatError,
 )
 from .formats import (
@@ -262,7 +262,7 @@ def compress_image(
     ------
     FileNotFoundError / IsADirectoryError
         The source does not exist or is not a regular file.
-    ImagePressError
+    TinyImgError
         Invalid options, unsupported format, decode/encode failure, or an
         existing output when ``overwrite=False``.
     OSError
@@ -511,7 +511,7 @@ def compress_many(
     def run(index: int, source: p.Path) -> None:
         try:
             result = compress_image(source, output, options=opts)
-        except (ImagePressError, OSError) as exc:
+        except (TinyImgError, OSError) as exc:
             record(index, source, None, exc)
         else:
             record(index, source, result, None)

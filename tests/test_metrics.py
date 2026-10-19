@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 from PIL import Image
 
-from imagepress.metrics import _ciede2000, compare
+from tinyimg.metrics import _ciede2000, compare
 
 
 def test_ciede2000_reference_pairs() -> None:

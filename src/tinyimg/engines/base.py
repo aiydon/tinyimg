@@ -2,7 +2,7 @@
 
 This module is the main porting seam.  To use a different backend (a system
 binary, a WASM encoder, a vendor SDK), implement :class:`Encoder` and register
-it with :func:`imagepress.register_encoder`.  The pipeline only depends on this
+it with :func:`tinyimg.register_encoder`.  The pipeline only depends on this
 small protocol, not on Pillow's save details.
 """
 
